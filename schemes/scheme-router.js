@@ -65,11 +65,12 @@ router.post("/", (req, res) => {
 router.post("/:id/steps", (req, res) => {
   const stepData = req.body;
   const { id } = req.params;
-
+  console.log("okay frend");
   Schemes.findById(id)
     .then((scheme) => {
       if (scheme) {
         Schemes.addStep(stepData, id).then((step) => {
+          console.log("steppies aREEEEEEEEEEEEEEEEEEE ", step);
           res.status(201).json(step);
         });
       } else {

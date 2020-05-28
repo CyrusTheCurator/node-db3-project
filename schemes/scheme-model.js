@@ -13,6 +13,8 @@ module.exports = {
   findSteps,
   add,
   update,
+  addStep,
+  remove,
 };
 
 function find() {
@@ -45,6 +47,16 @@ function update(changes, id) {
 
 function remove(id) {
   return db("schemes").where({ id }).del();
+}
+
+function addStep(stepData, id) {
+  stepData.scheme_id = id;
+  console.log(stepData);
+  return db("steps")
+    .insert(stepData)
+    .then(() => {
+      return stepData;
+    });
 }
 
 // -   `find()`:
